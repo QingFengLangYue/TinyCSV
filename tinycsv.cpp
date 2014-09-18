@@ -29,10 +29,12 @@ bool TinyCSV::load(const string &filename)
 
 bool TinyCSV::save(const string &filename, const char delimiter)
 {
-    if (filename.empty())
+    std::string savepath = filename.empty() ? _filename : filename;
+
+    if (savepath.empty())
         return false;
 
-    fstream outfs(filename, ios_base::out | ios_base::trunc);
+    fstream outfs(savepath, ios_base::out | ios_base::trunc);
     if (outfs.is_open())
     {
         for (const auto &row : _data)

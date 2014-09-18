@@ -28,7 +28,7 @@ public:
      * false - load failed, and isValid() return false.
      */
     bool load(const std::string &filename);
-    bool save(const std::string &filename, const char delimiter = ',');
+    bool save(const std::string &filename = "", const char delimiter = ',');
     bool isValid() {return _isValid;}
     int  rowCount() {return _data.size();}
     int  colCount() {return _data[0].size();}

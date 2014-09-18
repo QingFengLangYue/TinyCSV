@@ -20,7 +20,7 @@ int main()
         }
 
         /* modify */
-        csv[1][2] = "80";
+        csv[1][2] = "70";
         csv[2][2] = std::to_string(std::stoi(csv[2][2]) + 20);  // add 20
 
         /* save */
@@ -32,7 +32,7 @@ int main()
 
     /* load and read */
     TinyCSV csv2;
-    if (csv2.load("test.csv"))
+    if (csv2.load("test2.csv"))
     {
         // do something...
     }
