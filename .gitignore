@@ -1,0 +1,6 @@
+*.o
+*.obj
+*.exe
+*.tmp
+*.pro
+*.pro.user
