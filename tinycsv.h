@@ -2,6 +2,7 @@
 #define TINYCSV_H
 #include <string>
 #include <vector>
+#include <assert.h>
 
 class TinyCSV
 {
@@ -29,21 +30,27 @@ public:
      */
     bool load(const std::string &filename);
     bool save(const std::string &filename = "", const char delimiter = ',');
-    bool isValid() {return _isValid;}
-    int  rowCount() {return _data.size();}
-    int  colCount() {return _data[0].size();}
 
-    std::vector<std::string> &operator[](int row);
+    inline bool isValid()  const {return _isValid;}
+    inline int  rowCount() const {return _data.size();}
+    inline int  colCount() const {return _data[0].size();}
 
+    inline std::string getString(int row, int col) const { return _data[row][col];}
+    int   getInt(int row, int col) const;
+    float getFloat(int row, int col) const;
+
+    inline std::vector<std::string> &operator[](int row) { return _data[row];}
 
 protected:
     bool init();
+
+private:
+    bool isNum(const std::string &strNum) const;
 
 private:
     std::vector<std::vector<std::string> > _data;
     std::string _filename;
     bool        _isValid;
 };
-
 
 #endif // TINYCSV_H

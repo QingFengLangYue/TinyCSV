@@ -1,9 +1,13 @@
+#include "tinycsv.h"
+
+#include <cctype>
+
 #include <memory>
 #include <sstream>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include "tinycsv.h"
+
 using namespace std;
 
 TinyCSV::TinyCSV():
@@ -56,11 +60,20 @@ bool TinyCSV::save(const string &filename, const char delimiter)
     return false;
 }
 
-
-vector<string> &TinyCSV::operator[](int row)
+int TinyCSV::getInt(int row, int col) const
 {
-    return _data[row];
+    string value = _data[row][col];
+    assert(isNum(value));
+    return std::stoi(value);
 }
+
+float TinyCSV::getFloat(int row, int col) const
+{
+    string value = _data[row][col];
+    assert(isNum(value));
+    return std::stof(value);
+}
+
 
 bool TinyCSV::init()
 {
@@ -98,6 +111,32 @@ bool TinyCSV::init()
 
     infs.close();
     return false;
+}
+
+bool TinyCSV::isNum(const string &strNum) const
+{
+    int dot = false;
+
+    for (char c : strNum)
+    {
+        if (std::isdigit(c))
+        {
+            continue;
+        }
+        else if (c == '.')
+        {
+            if (dot)
+                return false;
+            else
+                dot = true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    return true;
 }
 
 
