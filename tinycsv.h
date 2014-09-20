@@ -43,6 +43,7 @@ public:
     inline void  setString(int row, int col, std::string value) { _data[row][col] = value;}
 
     inline std::vector<std::string> &operator[](int row) { return _data[row];}
+    inline const std::vector<std::string> &operator[](int row) const { return _data[row];}
 
 protected:
     bool init();

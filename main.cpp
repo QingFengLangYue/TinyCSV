@@ -5,7 +5,6 @@ using namespace std;
 
 int main()
 {
-
     /* load and print content */
     TinyCSV csv("test.csv");
     if (csv.isValid())
@@ -20,6 +19,12 @@ int main()
         }
 
         /* modify */
+        csv[1][2] = "70";
+        const TinyCSV c_csv(csv);
+        string str = c_csv[1][1];
+
+        csv[2][2] = std::to_string(csv.getInt(2, 2) + 20);  // add 20
+
         cout << "getString(0,2):" << csv.getString(1, 2) << endl;
 
         cout << "getInt(1,2):" << csv.getInt(1,2) << endl;
@@ -30,9 +35,6 @@ int main()
         csv.setFloat(2, 2, csv.getFloat(2, 2) + 50);
         cout << "getFloat(2,2):" << csv.getFloat(2,2) << endl;
 
-//        cout << "getInt(1,1):" << csv.getInt(1,1) << endl;
-//        csv[1][2] = "70";
-//        csv[2][2] = std::to_string(csv.getInt(2, 2) + 20);  // add 20
 
         /* save */
         if (csv.save("test.csv"))
