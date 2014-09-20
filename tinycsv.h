@@ -35,9 +35,12 @@ public:
     inline int  rowCount() const {return _data.size();}
     inline int  colCount() const {return _data[0].size();}
 
-    inline std::string getString(int row, int col) const { return _data[row][col];}
     int   getInt(int row, int col) const;
     float getFloat(int row, int col) const;
+    inline std::string getString(int row, int col) const { return _data[row][col];}
+    inline void  setInt(int row, int col, int value) { _data[row][col] = std::to_string(value);}
+    inline void  setFloat(int row, int col, float value) { _data[row][col] = std::to_string(value);}
+    inline void  setString(int row, int col, std::string value) { _data[row][col] = value;}
 
     inline std::vector<std::string> &operator[](int row) { return _data[row];}
 
